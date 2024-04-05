@@ -1,8 +1,15 @@
-const express = require('express');
-const router = express.Router();
+const express = require('express') 
+const router = express.Router() 
+const path = require('path') 
 
-const {testAPI}  = require('../controllers/mediaController');
+const { uploadFile, getFile, listFiles} = require('../controllers/mediaController') 
 
-router.get('/', testAPI)
+router.post('/upload', uploadFile, (req, res) => {
+    res.send('File uploaded!') 
+}) 
 
-module.exports = router;
+router.get('/files', listFiles)
+
+router.get('/download/:name', getFile) 
+
+module.exports = router 
